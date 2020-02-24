@@ -1,0 +1,46 @@
+.topbar .header-left .topnav > ul {
+  float: left;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav {
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+.topbar .header-left ul.nav-icons li {
+  padding: 10px 20px;
+}
+
+.topbar .header-left .topnav > ul > li {
+  float: left;
+  height: 100%;
+  margin: 0;
+}
+
+.topbar .header-left .topnav > ul.nav-icons > li > a {
+  padding: 0;
+}
+
+.topbar .header-left .topnav > ul > li > a {
+  display: inline-block;
+}
+
+.topbar .header-left ul.nav-icons li a {
+  background: none !important;
+  font-size: 19px;
+  width: 20px;
+}
+
+.topbar .header-left .topnav > ul > li > a {
+  color: #666666;
+  font-size: 14px;
+  height: 100%;
+  padding: 13px 19px 13px;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}

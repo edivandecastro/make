@@ -1,0 +1,29 @@
+.sidebar-condensed:not(.sidebar-collapsed) .main-content .topbar {
+  left: 190px;
+}
+
+.theme-sdtl.color-default .topbar {
+  background: #ffffff;
+}
+
+.fixed-topbar .topbar {
+  background: #ffffff;
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 240px;
+  z-index: 801;
+  z-index: 300;
+  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
+}
+
+.topbar {
+  -moz-transition: color 0.2s ease-out 0;
+  -webkit-transition: color 0.2s ease-out 0;
+  background: #ffffff;
+  height: 50px;
+  transition: color 0.2s ease-out 0;
+  position: relative;
+}

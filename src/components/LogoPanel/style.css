@@ -1,0 +1,49 @@
+.theme-sdtl.color-default:not(.sidebar-top) .logopanel {
+  background: #181a1d;
+}
+
+.sidebar-condensed .sidebar .logopanel {
+  width: 190px;
+}
+
+.sidebar .logopanel {
+  background: #202226;
+  height: 50px;
+  left: 0;
+  padding: 10px;
+  position: fixed;
+  right: auto;
+  top: 0;
+  width: 240px;
+  z-index: 2;
+  -webkit-transition: color 0.2s ease-out;
+  -moz-transition: color 0.2s ease-out;
+  -o-transition: color 0.2s ease-out;
+  -ms-transition: color 0.2s ease-out;
+  transition: color 0.2s ease-out;
+}
+
+.sidebar .logopanel h1 {
+  color: #ffffff;
+  font-family: 'Lato', 'Open Sans', Helvetica, sans-serif;
+  font-weight: 900;
+  font-size: 30px;
+  letter-spacing: -1.5px;
+  line-height: 31px;
+  margin: 0;
+}
+
+.sidebar .logopanel h1 a {
+  background: url(./images/logo-white.png) no-repeat;
+  display: block;
+  height: 31px;
+}
+
+a, a:focus, a:hover, a:active {
+  outline: 0;
+}
+
+a {
+  color: #319DB5;
+  text-decoration: none;
+}
