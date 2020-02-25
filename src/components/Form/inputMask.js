@@ -14,7 +14,20 @@ export default function Input({ name, ...rest }) {
     });
   }, [fieldName, registerField]);
 
+  function addClassError(rest) {
+    if (error) {
+      rest.className = rest.className + ' form-error'
+    }
+    else {
+      rest.className = rest.className.replace(' form-error', '');
+    }
+    return rest;
+  }
+
   return (
-    <InputMask ref={inputRef} defaultValue={defaultValue} {...rest} />
+    <div>
+      <InputMask ref={inputRef} defaultValue={defaultValue} {...addClassError(rest)} />
+      { error && <div className={"form-error"}>{error}</div> }
+    </div>
   )
 }

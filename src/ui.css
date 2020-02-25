@@ -3296,6 +3296,7 @@ textarea.form-error.form-control:focus {
   color: #994F4F;
   font-style: italic;
   margin-top: 10px;
+  font-size: 13px;
 }
 .form-success {
   color: #313131;

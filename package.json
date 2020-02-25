@@ -10,12 +10,16 @@
     "@unform/core": "^2.0.0",
     "@unform/web": "^2.0.0",
     "bootstrap": "^4.4.1",
+    "moment": "^2.24.0",
+    "moment-timezone": "^0.5.28",
     "react": "^16.12.0",
     "react-bootstrap": "^1.0.0-beta.16",
     "react-dom": "^16.12.0",
     "react-input-mask": "^3.0.0-alpha.2",
+    "react-moment": "^0.9.7",
     "react-scripts": "3.3.1",
-    "react-simple-line-icons": "^1.0.8"
+    "react-simple-line-icons": "^1.0.8",
+    "yup": "^0.28.1"
   },
   "scripts": {
     "start": "react-scripts start",

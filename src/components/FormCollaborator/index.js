@@ -1,4 +1,4 @@
-import React, { Component, useRef } from 'react';
+import React, { useRef } from 'react';
 import SimpleLineIcon from 'react-simple-line-icons';
 import InputMask from '../Form/inputMask';
 import { Form } from '@unform/web';
@@ -8,32 +8,69 @@ import Col from 'react-bootstrap/Col';
 import FormGroup from 'react-bootstrap/FormGroup';
 import Button from 'react-bootstrap/Button';
 import { Scope } from '@unform/core';
+import * as Yup from 'yup';
 import './style.css';
+import * as moment from 'moment';
+import 'moment/locale/pt-br';
 
 const initialData = {
-  name: "Edivan de Castro Soares",
-  dateOfBirth: "03/04/1986",
-  father: "Eugenio Soares Neto",
-  monther: "Ivani Deuci de Castro Soares",
-  address: {
-    street: "Avenida 20 de Janeiro",
-    street_number: "133",
-    cep: "60331200",
-    complement: "Alto",
-    state: "Ceará",
-    city: "Fortaleza",
-    neighborhood: "Barra do Ceará"
-  }
+  // name: "Edivan de Castro Soares",
+  // dateOfBirth: "03/04/1986",
+  // father: "Eugenio Soares Neto",
+  // monther: "Ivani Deuci de Castro Soares",
+  // email: "edivandecastro@gmail.com",
+  // address: {
+  //   street: "Avenida 20 de Janeiro",
+  //   streetNumber: "133",
+  //   cep: "60331200",
+  //   complement: "Alto",
+  //   state: "Ceará",
+  //   city: "Fortaleza",
+  //   neighborhood: "Barra do Ceará"
+  // }
 }
 
 export default function FormCollaborator() {
 
-  function handleSubmit(data) {
-    if (data.name === "") {
-      const className = formRef.current.getFieldRef('name').className
-      formRef.current.getFieldRef('name').className = className + ' ' + 'form-error';
+  async function handleSubmit(data, { reset })  {
+    try {
+      const schema = Yup.object().shape({
+         name: Yup.string().required("Nome completo é obrigatório"),
+         dateOfBirth: Yup.date().transform((value, originalValue) => {
+          const correctDate = moment(originalValue, 'DD/MM/YYYY');
+          console.log(correctDate);
+          return correctDate.isValid() ? correctDate.toDate() : new Date('');
+         }).typeError('Data de Nascimento inválida'),
+         father: Yup.string().required("Nome do pai é obrigatório"),
+         monther: Yup.string().required("Nome da mãe é obrigatório"),
+         email: Yup.string().email("Informe um email válido").required("Email é obrigatório"),
+         address: Yup.object().shape({
+          street: Yup.string().required("Logradouro é obrigatório"),
+          streetNumber: Yup.string().required("Número é obrigatório"),
+          cep: Yup.string().required("Cep é obrigatório"),
+          state: Yup.string().required("Estado é obrigatório"),
+          city: Yup.string().required("Cidade é obrigatório"),
+          neighborhood: Yup.string().required("Bairro é obrigatório"),
+         })
+      });
+
+      await schema.validate(data, {
+        abortEarly: false,
+      });
+
+      formRef.current.setErrors({});
+      reset();
+    } catch (err) {
+      if (err instanceof Yup.ValidationError) {
+        const errorMessages = {}
+
+        err.inner.forEach(error => {
+          errorMessages[error.path] = error.message;
+        });
+
+        formRef.current.setErrors(errorMessages);
+      }
     }
-    console.log(data);
   }
 
   const formRef = useRef(null);
@@ -91,6 +128,17 @@ export default function FormCollaborator() {
               </Row>
 
               <Row>
+                <Col xl="6">
+                  <FormGroup controlId="formGroupEmail">
+                    <Col className="prepend-icon">
+                      <Input type="text" className="form-control" name="email" placeholder="Email"  />
+                      <i className="icon-envelope"></i>
+                    </Col>
+                  </FormGroup>
+                </Col>
+              </Row>
+
+              <Row>
                 <div className="col-button">
                   <Button type="submit" variant="secondary" className="btn-square">Salvar</Button>
                 </div>
@@ -121,7 +169,7 @@ export default function FormCollaborator() {
                   <Col>
                     <FormGroup controlId="formGroupStreetNumber">
                       <Col className="prepend-icon">
-                        <Input type="text" className="form-control" name="street_number" placeholder="Número"  />
+                        <Input type="text" className="form-control" name="streetNumber" placeholder="Número"  />
                         <i className="icon-location-pin"></i>
                       </Col>
                     </FormGroup>
