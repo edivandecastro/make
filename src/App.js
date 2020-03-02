@@ -1,15 +1,12 @@
 import React from 'react';
-import Sidebar from './components/Sidebar'
-import MainContent from './components/MainContent'
-import './App.css';
+import { BrowserRouter } from "react-router-dom";
 
-function App() {
-  return (
-    <section>
-      <Sidebar />
-      <MainContent />
-    </section>
-  );
-}
+import Home from './components/Home';
+
+const App = () => (
+  <BrowserRouter>
+    <Home />
+  </BrowserRouter>
+)
 
 export default App;
