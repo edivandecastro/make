@@ -1,64 +1,9 @@
-/* .main-content .page-content .panel .panel-header h3 {
-  display: block;
-  font-family: 'Lato', 'Open Sans', sans-serif;
-  font-size: 15px;
-  font-weight: 400;
-  line-height: normal;
-  margin-bottom: 10px;
-  margin-top: 10px;
-  text-transform: uppercase;
-} */
-
 .icon-book-open, .icon-direction {
   display:inline;
   padding-right: 6px;
   font-size: 15px !important;
 }
-
-/* .main-content .page-content .panel-content {
-  padding: 10px 10px 10px 10px;
-  -webkit-border-radius: 0 0 2px 2px;
-  -moz-border-radius: 0 0 2px 2px;
-  border-radius: 0 0 2px 2px;
-  -moz-background-clip: padding;
-  -webkit-background-clip: padding-box;
-  background-clip: padding-box;
-} */
-
-/* .main-content .page-content .panel .panel-content i {
-  padding-left: 0;
-  padding-right: 6px;
-} */
-
-/* .prepend-icon {
-  position: relative;
-} */
-
-/* .form-control {
-  -webkit-box-shadow: none !important;
-  background-color:#ECEDEE;
-  border: 1px solid#ECEDEE;
-  box-shadow: none !important;
-  color: #555555;
-  display: inline-block;
-  font-size: 13px;
-  height: auto;
-  line-height: normal;
-  padding: 9px 12px 8px;
-  padding-left: 12px;
-  vertical-align: middle;
-  width: 100%;
-  -webkit-border-radius: 2px;
-  -moz-border-radius: 2px;
-  border-radius: 2px;
-  -webkit-transition: all 0.2s ease-out;
-  -moz-transition: all 0.2s ease-out;
-  -o-transition: all 0.2s ease-out;
-  -ms-transition: all 0.2s ease-out;
-  transition: all 0.2s ease-out;
-  background-image: none;
-} */
-
 .col-button {
-  margin-left: 30px;
+  margin-left: 10px;
+  padding-right: 10px;
 }

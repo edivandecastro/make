@@ -2948,16 +2948,13 @@ input:-webkit-autofill {
   top: 10px;
 }
 .form-horizontal .prepend-icon i {
-  left: 15px;
+  left: 5px;
 }
 .form-horizontal .append-icon i {
   right: 15px;
 }
 .form-horizontal .form-group {
   text-align: left;
-}
-.form-horizontal .row .col-md-12 {
-  margin-left: 15px;
 }
 .bg-dark .form-horizontal .control-label {
   color: #adadad;

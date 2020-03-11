@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import SimpleLineIcon from 'react-simple-line-icons';
 import InputMask from '../Form/inputMask';
 import { Form } from '@unform/web';
 import Input from '../Form/input';
@@ -78,18 +77,18 @@ export default function FormCollaborator() {
   return(
     <Form ref={formRef} initialData={initialData} onSubmit={handleSubmit} className="form-horizontal">
       <Row>
-        <Col>
+        <Col md={6}>
           <div className="panel">
             <div className="panel-header">
               <h3>
                 <div className="page-header">
-                  <SimpleLineIcon name="book-open" /><small>Dados Pessoais</small>
+                  <i className="icon-book-open"></i><small>Dados Pessoais</small>
                 </div>
               </h3>
             </div>
             <div className="panel-content">
               <Row>
-                <Col>
+                <Col md={6}>
                   <FormGroup controlId="formGroupFather">
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="name" placeholder="Nome Completo" />
@@ -97,7 +96,7 @@ export default function FormCollaborator() {
                     </Col>
                   </FormGroup>
                 </Col>
-                <Col>
+                <Col md={6}>
                   <FormGroup controlId="formGroupFather">
                     <Col className="prepend-icon">
                       <InputMask mask="99/99/9999" className="form-control" name="dateOfBirth"
@@ -109,7 +108,7 @@ export default function FormCollaborator() {
               </Row>
 
               <Row>
-                <Col>
+                <Col md={6}>
                   <FormGroup controlId="formGroupFather">
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="father" placeholder="Nome do Pai" />
@@ -117,7 +116,7 @@ export default function FormCollaborator() {
                     </Col>
                   </FormGroup>
                 </Col>
-                <Col>
+                <Col md={6}>
                   <FormGroup controlId="formGroupFather">
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="monther" placeholder="Nome da Mãe"  />
@@ -128,7 +127,7 @@ export default function FormCollaborator() {
               </Row>
 
               <Row>
-                <Col xl="6">
+                <Col md={12}>
                   <FormGroup controlId="formGroupEmail">
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="email" placeholder="Email"  />
@@ -146,19 +145,19 @@ export default function FormCollaborator() {
             </div>
           </div>
         </Col>
-        <Col>
+        <Col md={6}>
           <div className="panel">
             <div className="panel-header">
               <h3>
                 <div className="page-header">
-                  <SimpleLineIcon name="direction" /><small>Endereço</small>
+                  <i className="icon-direction"></i><small>Endereço</small>
                 </div>
               </h3>
             </div>
             <div className="panel-content">
               <Scope path="address">
                 <Row>
-                  <Col>
+                  <Col md={6}>
                     <FormGroup controlId="formGroupStreet">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="street" placeholder="Logradouro"  />
@@ -166,7 +165,7 @@ export default function FormCollaborator() {
                       </Col>
                     </FormGroup>
                   </Col>
-                  <Col>
+                  <Col md={6}>
                     <FormGroup controlId="formGroupStreetNumber">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="streetNumber" placeholder="Número"  />
@@ -176,7 +175,7 @@ export default function FormCollaborator() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col>
+                  <Col md={6}>
                     <FormGroup controlId="formGroupCep">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="cep" placeholder="Cep"  />
@@ -184,7 +183,7 @@ export default function FormCollaborator() {
                       </Col>
                     </FormGroup>
                   </Col>
-                  <Col>
+                  <Col md={6}>
                     <FormGroup controlId="formGroupComplement">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="complement" placeholder="Complemento"  />
@@ -194,7 +193,7 @@ export default function FormCollaborator() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col>
+                  <Col md={6}>
                     <FormGroup controlId="formGroupState">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="state" placeholder="Estado"  />
@@ -202,7 +201,7 @@ export default function FormCollaborator() {
                       </Col>
                     </FormGroup>
                   </Col>
-                  <Col>
+                  <Col md={6}>
                     <FormGroup controlId="formGroupCity">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="city" placeholder="Cidade"  />
@@ -212,7 +211,7 @@ export default function FormCollaborator() {
                   </Col>
                 </Row>
                 <Row>
-                  <Col xl="6" >
+                  <Col md={6} >
                     <FormGroup controlId="formGroupNeighborhood">
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="neighborhood" placeholder="Bairro"  />
