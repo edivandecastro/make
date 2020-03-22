@@ -1,10 +1,9 @@
 import React from 'react';
-import HeaderLeft from '../HeaderLeft'
-import './style.css';
+import HeaderLeft from './HeaderLeft'
 
-const TopBar = () => (
+const TopBar = (props) => (
   <div className="topbar">
-    <HeaderLeft />
+    <HeaderLeft modCode={props.modCode} />
   </div>
 );
 

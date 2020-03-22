@@ -3,7 +3,7 @@ import TopBar from '../../Topbar';
 
 const Details = () => (
   <div>
-    <TopBar />
+    <TopBar modCode="M01" />
     <div className="page-content">
       DETALHES DO COLABORADOR
     </div>

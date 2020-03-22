@@ -37,7 +37,6 @@ export default function FormCollaborator() {
          name: Yup.string().required("Nome completo é obrigatório"),
          dateOfBirth: Yup.date().transform((value, originalValue) => {
           const correctDate = moment(originalValue, 'DD/MM/YYYY');
-          console.log(correctDate);
           return correctDate.isValid() ? correctDate.toDate() : new Date('');
          }).typeError('Data de Nascimento inválida'),
          father: Yup.string().required("Nome do pai é obrigatório"),
@@ -81,7 +80,7 @@ export default function FormCollaborator() {
           <div className="panel">
             <div className="panel-header">
               <h3>
-                <div className="page-header">
+                <div>
                   <i className="icon-book-open"></i><small>Dados Pessoais</small>
                 </div>
               </h3>
@@ -89,7 +88,7 @@ export default function FormCollaborator() {
             <div className="panel-content">
               <Row>
                 <Col md={6}>
-                  <FormGroup controlId="formGroupFather">
+                  <FormGroup>
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="name" placeholder="Nome Completo" />
                       <i className="icon-user"></i>
@@ -97,7 +96,7 @@ export default function FormCollaborator() {
                   </FormGroup>
                 </Col>
                 <Col md={6}>
-                  <FormGroup controlId="formGroupFather">
+                  <FormGroup>
                     <Col className="prepend-icon">
                       <InputMask mask="99/99/9999" className="form-control" name="dateOfBirth"
                         placeholder="Data de Nascimento" maskPlaceholder="" />
@@ -109,7 +108,7 @@ export default function FormCollaborator() {
 
               <Row>
                 <Col md={6}>
-                  <FormGroup controlId="formGroupFather">
+                  <FormGroup>
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="father" placeholder="Nome do Pai" />
                       <i className="icon-people"></i>
@@ -117,7 +116,7 @@ export default function FormCollaborator() {
                   </FormGroup>
                 </Col>
                 <Col md={6}>
-                  <FormGroup controlId="formGroupFather">
+                  <FormGroup>
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="monther" placeholder="Nome da Mãe"  />
                       <i className="icon-user-female"></i>
@@ -128,7 +127,7 @@ export default function FormCollaborator() {
 
               <Row>
                 <Col md={12}>
-                  <FormGroup controlId="formGroupEmail">
+                  <FormGroup>
                     <Col className="prepend-icon">
                       <Input type="text" className="form-control" name="email" placeholder="Email"  />
                       <i className="icon-envelope"></i>
@@ -139,7 +138,7 @@ export default function FormCollaborator() {
 
               <Row>
                 <div className="col-button">
-                  <Button type="submit" variant="secondary" className="btn-square">Salvar</Button>
+                  <Button type="submit" variant="default" className="btn-square">Salvar</Button>
                 </div>
               </Row>
             </div>
@@ -149,7 +148,7 @@ export default function FormCollaborator() {
           <div className="panel">
             <div className="panel-header">
               <h3>
-                <div className="page-header">
+                <div>
                   <i className="icon-direction"></i><small>Endereço</small>
                 </div>
               </h3>
@@ -158,7 +157,7 @@ export default function FormCollaborator() {
               <Scope path="address">
                 <Row>
                   <Col md={6}>
-                    <FormGroup controlId="formGroupStreet">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="street" placeholder="Logradouro"  />
                         <i className="icon-home"></i>
@@ -166,7 +165,7 @@ export default function FormCollaborator() {
                     </FormGroup>
                   </Col>
                   <Col md={6}>
-                    <FormGroup controlId="formGroupStreetNumber">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="streetNumber" placeholder="Número"  />
                         <i className="icon-location-pin"></i>
@@ -176,7 +175,7 @@ export default function FormCollaborator() {
                 </Row>
                 <Row>
                   <Col md={6}>
-                    <FormGroup controlId="formGroupCep">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="cep" placeholder="Cep"  />
                         <i className="icon-directions"></i>
@@ -184,7 +183,7 @@ export default function FormCollaborator() {
                     </FormGroup>
                   </Col>
                   <Col md={6}>
-                    <FormGroup controlId="formGroupComplement">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="complement" placeholder="Complemento"  />
                         <i className="icon-options"></i>
@@ -194,7 +193,7 @@ export default function FormCollaborator() {
                 </Row>
                 <Row>
                   <Col md={6}>
-                    <FormGroup controlId="formGroupState">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="state" placeholder="Estado"  />
                         <i className="icon-map"></i>
@@ -202,7 +201,7 @@ export default function FormCollaborator() {
                     </FormGroup>
                   </Col>
                   <Col md={6}>
-                    <FormGroup controlId="formGroupCity">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="city" placeholder="Cidade"  />
                         <i className="icon-compass"></i>
@@ -212,7 +211,7 @@ export default function FormCollaborator() {
                 </Row>
                 <Row>
                   <Col md={6} >
-                    <FormGroup controlId="formGroupNeighborhood">
+                    <FormGroup>
                       <Col className="prepend-icon">
                         <Input type="text" className="form-control" name="neighborhood" placeholder="Bairro"  />
                         <i className="icon-layers"></i>

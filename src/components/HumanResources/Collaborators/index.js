@@ -4,7 +4,7 @@ import FormCollaborator from '../../FormCollaborator';
 
 const Index = () => (
   <div>
-    <TopBar />
+    <TopBar modCode="M01" />
     <div className="page-content">
       LISTA DE COLABORADORES
     </div>

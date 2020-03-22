@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 
-export default class NavSidebar extends Component {
+export default class NavHorizontal extends Component {
   constructor(props) {
     super(props);
 
@@ -21,7 +21,7 @@ export default class NavSidebar extends Component {
           {
             code: "SM02",
             name: "Colaboradores",
-            iconName: "",
+            iconName: "fa-users",
             resource: "/recursos_humanos/colaboradores",
             submenus: [
               {
@@ -89,53 +89,49 @@ export default class NavSidebar extends Component {
       },
     ]
 
-    this.state = {menus: listMenus};
-  }
-
-  handleClick = (code) => {
-    var menus = this.state.menus;
-
-    var menu = menus.find(menu => menu.code === code );
-    var index = menus.findIndex(menu => menu.code === code );
-
-    if (menu.className === "") {
-      menu.className = "active"
-    } else {
-      menu.className = ""
+    this.state = {
+      menuState: "",
+      modCode: props.modCode,
+      menus: listMenus,
     }
-    menus.splice(index, 1, menu);
-    this.deactivateMenus(menus, menu)
-
-    this.setState({menus: menus});
   }
 
-  deactivateMenus = (menus, menu) => {
-    menus.forEach(item => {
-      if (item.code != menu.code) item.className = ""
-    });
-    return menus;
+  onMouseOverHandle = () => {
+    this.setState({menuState: "open"});
+  }
+
+  onMouseOutHandle = () => {
+    this.setState({menuState: ""});
   }
 
   render() {
-    return <ul className="nav nav-sidebar">
-      { this.state.menus.map(item => this.renderMenu(item)) }
+    var menus = this.state.menus;
+    var modCode = this.state.modCode;
+    var menu = menus.find(menu => menu.code === modCode);
+
+    return <ul className="nav nav-horizontal">
+      { menu.submenus.map(item => this.renderMenu(item)) }
     </ul>
   }
 
-  renderMenu(item) {
-    return <li className={"nav-parent "+ item.className}>
-      <a href="#" onClick={this.handleClick.bind(this, item.code)}>
-        <i className={item.iconName}></i>
-        <span>{item.name}</span>
-        <span className="fa arrow"></span>
+  renderMenu(menu) {
+    console.log(menu.submenus);
+    return <li className={"nav-parent active " + this.state.menuState}
+      onMouseOver={this.onMouseOverHandle}
+      onMouseOut={this.onMouseOutHandle} >
+
+      <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" data-delay="30">
+        <i className={"fa " + menu.iconName}></i> { menu.name } <i className="icons-arrows-06"></i>
       </a>
-      { this.renderSubmenu(item.submenus) }
+      { this.renderSubmenu(menu.submenus) }
     </li>
   }
 
   renderSubmenu(submenus) {
-    return <ul class="children collapse">
-      { submenus.map(item => <li><Link to={item.resource}>{item.name}</Link></li>) }
+    if (!submenus) return;
+    var dropdownMenu = <ul className="dropdown-menu">
+      { submenus.map(item => <li className=""><Link to={item.resource}>{item.name}</Link></li>) }
     </ul>
+    return dropdownMenu;
   }
 }

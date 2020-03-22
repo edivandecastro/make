@@ -1,29 +1,40 @@
-.sidebar-condensed:not(.sidebar-collapsed) .main-content .topbar {
-  left: 190px;
-}
-
-.theme-sdtl.color-default .topbar {
-  background: #ffffff;
-}
-
-.fixed-topbar .topbar {
-  background: #ffffff;
-  position: fixed;
-  top: 0;
-  right: 0;
-  left: 240px;
-  z-index: 801;
-  z-index: 300;
-  -webkit-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
-  -moz-box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
-  box-shadow: 0 3px 3px rgba(0, 0, 0, 0.05);
-}
-
-.topbar {
-  -moz-transition: color 0.2s ease-out 0;
-  -webkit-transition: color 0.2s ease-out 0;
-  background: #ffffff;
+.topbar .header-left .topnav {
+  float: left;
   height: 50px;
-  transition: color 0.2s ease-out 0;
-  position: relative;
+  margin: 0;
+}
+
+.topnav > ul {
+  float: left;
+  height: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.topnav > ul.nav-icons > li > a {
+  padding: 0;
+}
+
+.topnav > ul.nav-icons > li > a:hover {
+  padding: 0;
+}
+
+ul.nav-icons li {
+  padding: 10px 20px;
+}
+
+ul.nav-icons li a {
+  background: none !important;
+  font-size: 19px;
+  width: 20px;
+}
+
+ul.nav-icons li a:before {
+  display: none !important;
+}
+
+.topbar .header-left ul.nav-icons li span {
+  color: #484E55;
+  display: block;
+  padding-top: 4px;
 }

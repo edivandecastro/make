@@ -4,7 +4,7 @@ import FormCollaborator from '../../FormCollaborator';
 
 const Create = () => (
   <div>
-    <TopBar />
+    <TopBar modCode="M01" />
     <div className="page-content">
       <FormCollaborator />
     </div>
