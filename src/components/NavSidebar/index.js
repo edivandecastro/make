@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 
-export default class NavSidebar extends Component {
+class NavSidebar extends Component {
   constructor(props) {
     super(props);
 
@@ -139,3 +139,5 @@ export default class NavSidebar extends Component {
     </ul>
   }
 }
+
+export default withRouter(NavSidebar);

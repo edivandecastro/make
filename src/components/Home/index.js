@@ -8,7 +8,11 @@ import './style.css';
 const Home = () => (
   <section>
     <Sidebar />
-    <MainContent />
+    {/* <MainContent> */}
+    <div className="main-content">
+      {/* { this.PaymentResponse.children } */}
+    </div>
+    {/* </MainContent> */}
   </section>
 );
 

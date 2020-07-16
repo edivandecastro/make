@@ -15,12 +15,35 @@ export default class NavHorizontal extends Component {
           {
             code: "SM01",
             name: "Dashboard",
+            open: "",
             iconName: "",
             resource: "/recursos_humanos",
           },
           {
             code: "SM02",
             name: "Colaboradores",
+            open: "",
+            iconName: "fa-users",
+            resource: "/recursos_humanos/colaboradores",
+            submenus: [
+              {
+                code: "LSM01",
+                name: "Ver Todos",
+                iconName: "",
+                resource: "/recursos_humanos/colaboradores",
+              },
+              {
+                code: "LSM02",
+                name: "Cadastrar Novo",
+                iconName: "",
+                resource: "/recursos_humanos/colaboradores/cadastro",
+              },
+            ]
+          },
+          {
+            code: "SM03",
+            name: "Funções",
+            open: "",
             iconName: "fa-users",
             resource: "/recursos_humanos/colaboradores",
             submenus: [
@@ -48,8 +71,9 @@ export default class NavHorizontal extends Component {
         className: "",
         submenus: [
           {
-            code: "SMSRV02",
+            code: "SM02",
             name: "Recursos Humanos",
+            open: "",
             resource: "http://localhost:3000/recursos_humanos/dashboard",
             iconName: "icon-people",
             className: "",
@@ -64,7 +88,7 @@ export default class NavHorizontal extends Component {
         className: "",
         submenus: [
           {
-            code: "SMSRV03",
+            code: "SM04",
             name: "Recursos Humanos",
             resource: "http://localhost:3000/recursos_humanos/dashboard",
             iconName: "icon-people",
@@ -79,7 +103,7 @@ export default class NavHorizontal extends Component {
         className: "",
         submenus: [
           {
-            code: "SM01",
+            code: "SM04",
             name: "Menus",
             resource: "/administracao/menus/cadastro",
             iconName: "icon-people",
@@ -90,18 +114,35 @@ export default class NavHorizontal extends Component {
     ]
 
     this.state = {
-      menuState: "",
       modCode: props.modCode,
       menus: listMenus,
     }
   }
 
-  onMouseOverHandle = () => {
-    this.setState({menuState: "open"});
+  onMouseOverHandle = (code) => {
+    var menus = this.state.menus;
+
+    menus.forEach(item => {
+      var submenu = item.submenus.find(submenu => submenu.code === code );
+      if (submenu) {
+        submenu.open = "open"
+      }
+    });
+
+    this.setState({menus: menus});
   }
 
-  onMouseOutHandle = () => {
-    this.setState({menuState: ""});
+  onMouseOutHandle = (code) => {
+    var menus = this.state.menus;
+
+    menus.forEach(item => {
+      var submenu = item.submenus.find(submenu => submenu.code === code );
+      if (submenu) {
+        submenu.open = ""
+      }
+    });
+
+    this.setState({menus: menus});
   }
 
   render() {
@@ -115,10 +156,9 @@ export default class NavHorizontal extends Component {
   }
 
   renderMenu(menu) {
-    console.log(menu.submenus);
-    return <li className={"nav-parent active " + this.state.menuState}
-      onMouseOver={this.onMouseOverHandle}
-      onMouseOut={this.onMouseOutHandle} >
+    return <li className={"nav-parent active " + menu.open}
+      onMouseOver={this.onMouseOverHandle.bind(this, menu.code)}
+      onMouseOut={this.onMouseOutHandle.bind(this, menu.code)} >
 
       <a href="#" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" data-delay="30">
         <i className={"fa " + menu.iconName}></i> { menu.name } <i className="icons-arrows-06"></i>
