@@ -5,14 +5,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'simple-line-icons/css/simple-line-icons.css';
 import './style.css';
 
-const Home = () => (
+const Home = (props) => (
   <section>
     <Sidebar />
-    {/* <MainContent> */}
-    <div className="main-content">
-      {/* { this.PaymentResponse.children } */}
-    </div>
-    {/* </MainContent> */}
+    <MainContent content={props.content} />
   </section>
 );
 
