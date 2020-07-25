@@ -79,7 +79,7 @@ class NavSidebar extends Component {
         className: "",
         submenus: [
           {
-            code: "SM01",
+            code: "SM03",
             name: "Menus",
             resource: "/administracao/menus/cadastro",
             iconName: "icon-people",
@@ -134,7 +134,7 @@ class NavSidebar extends Component {
   }
 
   renderSubmenu(submenus) {
-    return <ul class="children collapse">
+    return <ul className="children collapse">
       { submenus.map(item => <li><Link to={item.resource}>{item.name}</Link></li>) }
     </ul>
   }

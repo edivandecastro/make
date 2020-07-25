@@ -6,8 +6,8 @@ import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import FormGroup from 'react-bootstrap/FormGroup';
 import * as Yup from 'yup';
-import axios from 'axios';
 import Notification from '../Util/Notification';
+import { AuthenticateUser, TokenValidate } from '../../../service/Api'
 
 document.body.className = "";
 document.body.className = "sidebar-condensed account2"
@@ -18,25 +18,31 @@ export default function Login() {
   const [showErrorLogin, setShowErrorLogin] = useState(false);
   const [messageErrorLogin, setMessageErrorLogin] = useState(null);
 
-  const api = axios.create({
-    baseURL: 'http://localhost:3002/heimdall',
-    // headers: {'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI1ZGMwZjVhMjFhM2FiMjJkMWNmOWYzNjAiLCJpYXQiOjE1OTU1NTY3NzEsImV4cCI6MTU5NTU2Mzk3MSwiYXVkIjoidG9rZW4gZG8gY2xpZW50ZSIsImlzcyI6IkhlaW1kYWxsQXBpIn0.XYGutae4rhNox6We_bP0ZG3FDXxE2w7v5Jiwxl5W9fA'}
+  let token = localStorage.getItem(localStorage.getItem('uid'));
+
+  TokenValidate(token).then(res => {
+    if(res.data.success) {
+      history.push('/sistema');
+    }
   });
 
   async function authenticate(username, password) {
-
-    await api.post('/authenticate', {username, password}).then(res => {
-      console.log(res.data);
-    }).catch(function (error) {
+    let token = null
+    await AuthenticateUser(username, password).then(res => {
+      let id = res.data.user._id
+      token = res.data.token;
+      localStorage.setItem('uid', id);
+      localStorage.setItem(id, token);
+    }).catch(err => {
       setShowErrorLogin(true);
-      if(error.response) {
-        setMessageErrorLogin(error.response.data.error);
+      if(err.response) {
+        setMessageErrorLogin(err.response.data.error);
       } else {
         setMessageErrorLogin("O Serviço está indisponível no momento, por favor entre em contato com o suporte!");
       }
     });
 
-    if (true) {
+    if (token) {
       history.push('/sistema');
     }
   }
