@@ -1,15 +1,17 @@
 import React from 'react';
 import Sidebar from '../Sidebar'
-import MainContent from '../MainContent'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'simple-line-icons/css/simple-line-icons.css';
 import './style.css';
+import TopBar from '../Topbar'
 
-const Home = (props) => (
-  <section>
-    <Sidebar />
-    <MainContent content={props.content} />
-  </section>
+const Home = () => (
+  <div>
+    <TopBar modCode="M01" />
+    <div className="page-content">
+      AQUI
+    </div>
+  </div>
 );
 
 export default Home;
