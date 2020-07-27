@@ -1,9 +1,8 @@
 import React from 'react';
 import Routes from './config/routes';
-import Login from "./components/System/Login"
 
-const App = () => (
-  <Routes />
-)
+const App = () => {
+  return <Routes />
+}
 
 export default App;

@@ -1,16 +1,13 @@
-import React, {useRef, Component, useState} from 'react';
+import React, {useRef, useState, useEffect} from 'react';
 import { Form } from '@unform/web';
-import Input from '../../Form/input'
-import { useHistory } from 'react-router-dom'
+import Input from '../../Form/input';
+import { useHistory } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import Row from 'react-bootstrap/Row';
 import FormGroup from 'react-bootstrap/FormGroup';
 import * as Yup from 'yup';
 import Notification from '../Util/Notification';
-import { AuthenticateUser, TokenValidate } from '../../../service/Api'
-
-document.body.className = "";
-document.body.className = "sidebar-condensed account2"
+import { AuthenticateUser, TokenValidate } from '../../../service/Api';
 
 export default function Login() {
   const formRef = useRef(null);
@@ -24,6 +21,11 @@ export default function Login() {
     if(res.data.success) {
       history.push('/sistema');
     }
+  });
+
+  useEffect(() => {
+    document.body.className = "";
+    document.body.className = "sidebar-condensed account2"
   });
 
   async function authenticate(username, password) {
