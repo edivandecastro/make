@@ -1,23 +1,18 @@
 import axios from 'axios';
 
-const getAxios = ({ token }) => {
+export const baseURL = {
+  'heimdall': 'http://localhost:3002/heimdall',
+  'chef': 'http://localhost:3003/chef'
+}
+
+export const getAxios = ({ token }, urlApi) => {
   let options = {}
   if (token) {
     options.Authorization = `Bearer ${token}`;
   }
-  console.log(token);
+
   return axios.create({
-    baseURL: 'http://localhost:3002/heimdall',
+    baseURL: urlApi,
     headers: options
   });
-}
-
-export const AuthenticateUser = (username, password) => {
-  let api = getAxios({});
-  return api.post('/authenticate', {username, password});
-}
-
-export const TokenValidate = (token) => {
-  let api = getAxios({ token });
-  return api.get('/authenticate/validate');
 }

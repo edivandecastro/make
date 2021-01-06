@@ -7,7 +7,7 @@ import Row from 'react-bootstrap/Row';
 import FormGroup from 'react-bootstrap/FormGroup';
 import * as Yup from 'yup';
 import Notification from '../Util/Notification';
-import { AuthenticateUser, TokenValidate } from '../../../service/Api';
+import { AuthenticateUser, TokenValidate } from '../../../service/HeimdalApi';
 
 export default function Login() {
   const formRef = useRef(null);
@@ -31,7 +31,7 @@ export default function Login() {
   async function authenticate(username, password) {
     let token = null
     await AuthenticateUser(username, password).then(res => {
-      let id = res.data.user._id
+      const id = res.data.user._id
       token = res.data.token;
       localStorage.setItem('uid', id);
       localStorage.setItem(id, token);
@@ -52,8 +52,8 @@ export default function Login() {
   async function HandleSubmit(data, { reset }) {
     try {
       const schema = Yup.object().shape({
-        username: Yup.string().required("Informe um usuário válido"),
-        password: Yup.string().required("Informe uma senha válida")
+        username: Yup.string().required("É necessário informar um usuário"),
+        password: Yup.string().required("É necessário informar uma senha")
       });
 
       await schema.validate(data, {
