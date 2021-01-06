@@ -1,14 +1,3 @@
-import React from "react";
-import TopBar from '../Topbar';
-import PageContent from '../PageContent';
+import HumanResources from './HumanResources.jsx';
 
-const ResourcesHuman = ({content_type}) => (
-  <div>
-    <TopBar modCode="M01" />
-    <div className="page-content">
-      DASHBOARD DE RECURSOS HUMANOS
-    </div>
-  </div>
-);
-
-export default ResourcesHuman;
+export default HumanResources;

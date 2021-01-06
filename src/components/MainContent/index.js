@@ -1,17 +1,3 @@
-import React, { Component } from "react";
-import Sidebar from '../Sidebar'
-
-const MainContent = (WrappedComponent) => {
-  return class extends Component {
-    render() {
-      return <section>
-        <Sidebar />
-        <div className="main-content">
-          <WrappedComponent {...this.props} />
-        </div>
-      </section>
-    }
-  }
-}
+import MainContent from './MainContent.jsx';
 
 export default MainContent;

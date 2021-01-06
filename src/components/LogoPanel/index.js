@@ -1,12 +1,3 @@
-import React from 'react';
-// import './style.css';
-
-const LogoPanel = () => (
-  <div className="logopanel">
-    <h1>
-      <a href="dashboard.html"></a>
-    </h1>
-  </div>
-);
+import LogoPanel from './LogoPanel.jsx';
 
 export default LogoPanel;

@@ -2,7 +2,8 @@ import { getAxios, baseURL } from '../service/Api'
 
 export const AuthenticateUser = (username, password) => {
   let api = getAxios({}, baseURL['heimdall']);
-  return api.post('/authenticate', {username, password});
+  const ap = api.post('/authenticate', {username, password});
+  return ap;
 }
 
 export const TokenValidate = (token) => {
