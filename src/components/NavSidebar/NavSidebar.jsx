@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
-import { GetMenus } from '../../service/ChefApi';
+import { useSelector, useDispatch } from 'react-redux';
+import getAllMenus from '../../store/Menus/Menus.action';
 
   // const loadMenus = () => {
     // return [
@@ -89,20 +90,14 @@ import { GetMenus } from '../../service/ChefApi';
   // }
 
 const NavSidebar = () => {
-
-  const getMenuApi = async () => {
-    let menus = [];
-    await GetMenus().then(res => {
-      menus = res.data.menus;
-    });
-    return menus;
-  }
-
-  const [menus, setMenus] = useState([]);
+  const dispatch = useDispatch();
+  const { menus } = useSelector(state => state.menus);
+  const { error } = useSelector(state => state.menus);
+  const { message } = useSelector(state => state.menus);
 
   useEffect(() => {
-    getMenuApi().then((menus) => setMenus(menus))
-  }, [])
+    dispatch(getAllMenus());
+  }, [dispatch])
 
   const deactivateMenus = (menus, menu) => {
     menus.forEach(item => {
@@ -128,8 +123,6 @@ const NavSidebar = () => {
     }
     menus.splice(index, 1, menu);
     deactivateMenus(menus, menu)
-
-    setMenus(menus);
   }
 
   const renderMenu = (item) => {
