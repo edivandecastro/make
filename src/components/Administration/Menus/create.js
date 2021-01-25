@@ -6,7 +6,7 @@ export default function Create() {
   return(
     <div>
       <TopBar modCode="M04" />
-      <div className="page-content">
+      <div style={{overflow: "visible"}} className="page-content">
         <FormAdministration />
       </div>
     </div>
