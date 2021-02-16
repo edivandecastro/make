@@ -1,12 +1,15 @@
 import React, { useRef, useState } from "react";
 import { Form } from "@unform/web";
 import Select from 'react-select';
-import Input from '../../Form/input';
+import Button from 'react-bootstrap/Button';
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import FormGroup from 'react-bootstrap/FormGroup';
 import * as Yup from 'yup';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import Input from '../../Form/input';
+import { actionCreateMenu } from '../../../store/Menus/Menus.action'
+import Notification from '../../System/Util/Notification';
 
 const initialOptions = menus => {
   let options = [];
@@ -22,22 +25,56 @@ const initialOptions = menus => {
   return options;
 }
 
+const showMessageErrorCreateMenu = (errors) => {
+  if (errors.create_menu) {
+    let message = errors.create_menu.message
+
+    if (errors.create_menu.reason.length > 0) {
+      message += ': '
+      let count_reason = 0;
+      errors.create_menu.reason.forEach(reason => {
+        message += reason
+        count_reason++
+        if (count_reason < errors.create_menu.reason.length) {
+          message += ', '
+        }
+      })
+    }
+
+    return message
+  }
+}
+
+const hasErrorCreateMenu = (errors) => {
+  if (errors.create_menu) {
+    return true
+  }
+  else {
+    return false
+  }
+}
+
 const initialData = {
 }
 
 export default function FormAdministration() {
   const formRef = useRef(null);
+  const dispatch = useDispatch();
   const { menus } = useSelector(state => state.menus);
+  const { errors } = useSelector(state => state.menus );
+
   const [selectedOption, setSelectedOption] = useState(null);
 
   async function handleSubmit(data, { reset }) {
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required('O nome é obrigatório'),
-        iconName: Yup.string.required('O ícone é obrigatório'),
+        iconName: Yup.string().required('O ícone é obrigatório'),
       });
 
       await schema.validate(data, { abortEarly: false });
+
+      dispatch(actionCreateMenu(data));
 
       formRef.current.setErrors({});
       reset();
@@ -68,6 +105,12 @@ export default function FormAdministration() {
             </div>
             <div className="panel-content">
               <Row>
+                <Notification
+                  message={showMessageErrorCreateMenu(errors)}
+                  context="error"
+                  show={hasErrorCreateMenu(errors)} />
+              </Row>
+              <Row>
                 <Col md={6}>
                   <FormGroup>
                     <Select
@@ -97,6 +140,21 @@ export default function FormAdministration() {
                     </Col>
                   </FormGroup>
                 </Col>
+              </Row>
+              <Row>
+                <Col md={6}>
+                  <FormGroup>
+                    <Col className="prepend-icon">
+                      <Input type="text" className="form-control" name="iconName" placeholder="Ícone" />
+                      <i className="icon-grid"></i>
+                    </Col>
+                  </FormGroup>
+                </Col>
+              </Row>
+              <Row>
+                <div className="col-button">
+                  <Button type="submit" variant="default" className="btn-square">Salvar</Button>
+                </div>
               </Row>
             </div>
           </div>
