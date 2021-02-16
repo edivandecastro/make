@@ -16,6 +16,9 @@ const addClassname = (context) => {
     case 'warning':
       className = 'alert-warning';
       break;
+    default:
+      className = '';
+      break;
   }
   return `alert media fade in ${className}`
 }

@@ -15,7 +15,7 @@ const initialOptions = menus => {
   let options = [];
 
   menus.forEach(menu => {
-    options.push({ value: menu.code, label: menu.name });
+    options.push({ value: menu._id, label: menu.name });
 
     if(menu.submenus.length > 0) {
       options = options.concat(initialOptions(menu.submenus))
@@ -66,6 +66,10 @@ export default function FormAdministration() {
   const [selectedOption, setSelectedOption] = useState(null);
 
   async function handleSubmit(data, { reset }) {
+    if (selectedOption) {
+      data.parent_id = selectedOption.value
+    }
+
     try {
       const schema = Yup.object().shape({
         name: Yup.string().required('O nome é obrigatório'),
@@ -105,10 +109,12 @@ export default function FormAdministration() {
             </div>
             <div className="panel-content">
               <Row>
-                <Notification
-                  message={showMessageErrorCreateMenu(errors)}
-                  context="error"
-                  show={hasErrorCreateMenu(errors)} />
+                <Col md={6}>
+                  <Notification
+                    message={showMessageErrorCreateMenu(errors)}
+                    context="error"
+                    show={hasErrorCreateMenu(errors)} />
+                </Col>
               </Row>
               <Row>
                 <Col md={6}>
