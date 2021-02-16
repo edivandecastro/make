@@ -1,16 +1,15 @@
 import React, { useEffect } from "react";
 import { Link, withRouter } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
-import { getAllMenus, setActiveMenu } from '../../store/Menus/Menus.action';
+import { actionGetAllMenus, actionSetActiveMenu } from '../../store/Menus/Menus.action';
 
 const NavSidebar = () => {
   const dispatch = useDispatch();
   const { menus } = useSelector(state => state.menus);
-  const { error } = useSelector(state => state.menus);
   const { message } = useSelector(state => state.menus);
 
   useEffect(() => {
-    dispatch(getAllMenus());
+    dispatch(actionGetAllMenus());
   }, [dispatch])
 
   const renderSubmenu = (submenus) => {
@@ -19,13 +18,13 @@ const NavSidebar = () => {
     </ul>
   }
 
-  var handleClick = (code) => {
-    dispatch(setActiveMenu(code))
+  var handleClick = (id) => {
+    dispatch(actionSetActiveMenu(id))
   }
 
   const renderMenu = (item) => {
-    return <li key={item.code} className={"nav-parent "+ item.className}>
-      <a href="#" onClick={handleClick.bind(this, item.code)}>
+    return <li key={item._id} className={"nav-parent "+ item.className}>
+      <a href="#" onClick={handleClick.bind(this, item._id)}>
         <i className={item.iconName}></i>
         <span>{item.name}</span>
         <span className="fa arrow"></span>
