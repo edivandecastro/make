@@ -13,19 +13,19 @@ import * as moment from 'moment';
 import 'moment/locale/pt-br';
 
 const initialData = {
-  // name: "Edivan de Castro Soares",
+  // name: "Jon Snow",
   // dateOfBirth: "03/04/1986",
-  // father: "Eugenio Soares Neto",
-  // monther: "Ivani Deuci de Castro Soares",
-  // email: "edivandecastro@gmail.com",
+  // father: "Rhaegar Targaryen",
+  // monther: "Lyanna Stark",
+  // email: "jonsnow@gmail.com",
   // address: {
-  //   street: "Avenida 20 de Janeiro",
-  //   streetNumber: "133",
+  //   street: "Avenida dos caminhantes brancos",
+  //   streetNumber: "1323",
   //   cep: "60331200",
   //   complement: "Alto",
-  //   state: "Ceará",
-  //   city: "Fortaleza",
-  //   neighborhood: "Barra do Ceará"
+  //   state: "Norte",
+  //   city: "Winterfell",
+  //   neighborhood: "Guardiões do Norte"
   // }
 }
 

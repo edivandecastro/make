@@ -1,6 +1,5 @@
 import React from "react";
 import TopBar from '../../Topbar';
-import FormCollaborator from '../../FormCollaborator';
 
 const Index = () => (
   <div>
