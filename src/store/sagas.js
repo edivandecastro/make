@@ -1,5 +1,5 @@
-import { call, put, takeLatest } from 'redux-saga/effects';
-import { getMenus } from '../service/ChefApi'
+import { call, put, takeEvery, takeLatest } from 'redux-saga/effects';
+import { getMenus, postCreateMenu } from '../service/ChefApi'
 
 function* fetchMenu() {
   try {
@@ -10,8 +10,18 @@ function* fetchMenu() {
   }
 }
 
+function* createMenu(action) {
+  try {
+    const menu = yield call(postCreateMenu, action.payload);
+    yield put({ type: 'CREATE_MENU_SUCCEEDED', payload: menu.data });
+  } catch (e) {
+    yield put({ type: 'CREATE_MENU_FAILED', payload: { error: e.response.data }});
+  }
+}
+
 function* saga() {
   yield takeLatest('MENU_FETCH_REQUESTED', fetchMenu);
+  yield takeEvery('CREATE_MENU_REQUESTED', createMenu);
 }
 
 export default saga;
