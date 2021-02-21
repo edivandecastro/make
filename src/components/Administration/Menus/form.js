@@ -11,15 +11,24 @@ import Input from '../../Form/input';
 import { actionCreateMenu } from '../../../store/Menus/Menus.action'
 import Notification from '../../System/Util/Notification';
 
-const initialOptions = menus => {
+const initialOptions = (menus, ancestors=[], parent_id) => {
   let options = [];
 
+  if (parent_id && !ancestors.find(p => p === parent_id)) {
+    ancestors.push(parent_id);
+  }
+
+  let new_ancestors = ancestors.flat()
+
   menus.forEach(menu => {
-    options.push({ value: menu._id, label: menu.name });
+    const option = { value: menu._id, label: menu.name, ancestors: new_ancestors }
+    options.push(option);
 
     if(menu.submenus.length > 0) {
-      options = options.concat(initialOptions(menu.submenus))
+      options = options.concat(initialOptions(menu.submenus, ancestors, menu._id))
     }
+
+    ancestors = new_ancestors.flat()
   });
 
   return options;
@@ -67,7 +76,9 @@ export default function FormAdministration() {
 
   async function handleSubmit(data, { reset }) {
     if (selectedOption) {
-      data.parent_id = selectedOption.value
+      let ancestors = selectedOption.ancestors
+      ancestors.push(selectedOption.value)
+      data.ancestors = ancestors
     }
 
     try {
